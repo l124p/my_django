@@ -1,0 +1,37 @@
+<style>
+
+    .wrapper{
+        width: 80%;
+    }
+    .row{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .wrapper div{
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+    button{
+        height: 100%;
+    }
+</style>
+
+<h2>Вопросы</h2>
+<div class="wrapper">
+    <div class="row hrow">
+        <div>ID клиента</div>
+        <div>Имя клиента</div>      
+        <div>Фамилия клиента</div>      
+        <div>Возраст клиента</div>      
+    </div>
+    {% for client in clients %}
+        <div class="row">   
+                <div>{{client.id}}</div>
+                <div>{{client.last_name}}</div>
+                <div>{{client.first_name}}</div>
+                <div>{{client.age}}</div>
+        </div>
+    {% endfor %}
+</div>
+
+
