@@ -1,3 +1,5 @@
+CSRF_TRUSTED_ORIGINS = ['http://ec2-3-93-193-29.compute-1.amazonaws.com']
+
 """
 Django settings for setting project.
 
