@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Квизы</title>
-    <link rel="stylesheet" href="{% static 'main.css' %}">
-    <link rel="stylesheet" href="{% static 'quiz.css' %}">
+    <title>Bank</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quizes.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/quiz.css' %}"> -->
 </head>
 <body>
     
     <header >Header
         <nav><ul class="main-menu">
+            <li><a href="/products/">Продукты</a></li>
             <li><a href="/clients/">Клиенты</a></li>
             <li><a href="/login/">логин</a></li>
             <li><a href="/reg/">регистрация</a></li>
@@ -22,12 +24,9 @@
     <main>
 
         <section class="info">
-            Section
             <h2>Это базовый шаблон</h2>
         </section>
         <section class="content">   
-            Section
-            <h2>Все остальные шаблоны загружаются внутри него</h2>
         
             {% block content %}
 

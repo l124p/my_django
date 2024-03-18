@@ -1,11 +1,19 @@
 <style>
+    
 
-    .wrapper{
-        width: 80%;
+.row div{
+    border: 1px solid black;
+    border-collapse: collapse;
     }
+
+.hrow{
+    font-size: 125%;
+    border-collapse: collapse;
+    }
+
     .row{
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     .wrapper div{
         border: 1px solid;
@@ -16,22 +24,25 @@
     }
 </style>
 
-<h2>Вопросы</h2>
-<div class="wrapper">
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Клиенты</h2>
+<div class="start_form quizes_form">
     <div class="row hrow">
-        <div>ID клиента</div>
+        <!-- <div>ID клиента</div> -->
         <div>Имя клиента</div>      
         <div>Фамилия клиента</div>      
         <div>Возраст клиента</div>      
     </div>
     {% for client in clients %}
         <div class="row">   
-                <div>{{client.id}}</div>
+                <!-- <div>{{client.id}}</div> -->
                 <div>{{client.last_name}}</div>
                 <div>{{client.first_name}}</div>
                 <div>{{client.age}}</div>
         </div>
     {% endfor %}
 </div>
-
+{% endblock %}
 

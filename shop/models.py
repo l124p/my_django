@@ -44,6 +44,10 @@ class ClientProduct(models.Model):
 
     def __str__(self) -> str:
         return f'У {self.client.first_name} {self.client.last_name} открыт {self.product} - {self.date}'
+    
+    class Meta:
+        verbose_name = "Продукт клиента"
+        verbose_name_plural = "Продукты клиентов"
 
 
     
@@ -58,8 +62,8 @@ class Product(models.Model):
     class Meta:
         unique_together= ('name',)
         ordering = ['name']
-        verbose_name = "Продукт"
-        verbose_name_plural = "Продукты"
+        verbose_name = "Вид продукта"
+        verbose_name_plural = "Виды продуктов"
         #db_table = 'products'
 
 
@@ -75,8 +79,8 @@ class KindProduct(models.Model):
         unique_together = ('product', 'kind')
         #ordering = [models.OrderBy(fields=['first_name'])]
         ordering = ['product', 'kind']
-        verbose_name = "Вид продукта"
-        verbose_name_plural = "Виды продуктов"
+        verbose_name = "Продукт"
+        verbose_name_plural = "Продукты"
         #db_table = 'KindProduct'
 
     def __str__(self) -> str:

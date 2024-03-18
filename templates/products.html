@@ -1,0 +1,47 @@
+<style>
+
+    .row{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .row div{
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+
+    .hrow{
+    font-size: 125%;
+    border-collapse: collapse;
+    }
+
+    .wrapper div{
+        text-align: center;
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+    button{
+        height: 100%;
+    }
+</style>
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Вопросы</h2>
+<div class="start_form quizes_form">
+    <div class="row hrow">
+        <div>Вид продукта</div>      
+        <div>Название продукта</div>      
+    </div>
+    {% for product in products %}
+        <div class="row">   
+                <!-- <div>{{product.id}}</div> -->
+                <div>{{product.product}}</div>
+                <div>{{product.kind}}</div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

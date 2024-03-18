@@ -1,16 +1,16 @@
 # from django.urls import path, include
-from shop import views
+#from shop import views
 
 # urlpatterns = [
 #     path('', views.clients, name='clients'),
 # ]
 
-from django.conf.urls import url
+#from django.conf.urls import url
 #from shop.forms.auth import RegisterUserForm, ContinueAsGuestForm
 #from shop.views.auth import AuthFormsView, LoginView, LogoutView, PasswordChangeView, PasswordResetRequestView
 
-urlpatterns = [
-    url(r'^clients/?$', views.clients, name='clients'),
+#urlpatterns = [
+    #url(r'^clients/?$', views.clients, name='clients'),
     # url(r'^password/reset/?$', PasswordResetRequestView.as_view(),
     #     name='password-reset-request'),
     # url(r'^login/?$', LoginView.as_view(),
@@ -24,4 +24,4 @@ urlpatterns = [
     #     name='logout'),
     # url(r'^password/change/?$', PasswordChangeView.as_view(),
     #     name='password-change'),
-]
+#]
