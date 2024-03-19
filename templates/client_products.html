@@ -1,4 +1,32 @@
 
+<style>
+
+    .row{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+
+    .row div{
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+
+    .hrow{
+    font-size: 125%;
+    border-collapse: collapse;
+    }
+
+    .wrapper div{
+        text-align: center;
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+    button{
+        height: 100%;
+    }
+</style>
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -10,20 +38,17 @@
     <div class="row hrow">
         <div>Quiz ID</div>
         <div>Quiz Name</div>
-        <div>User ID</div>
-        <div>Count questions</div>
-        <div></div>
-        <div></div>        
+        <div>User ID</div>    
     </div>
-    {%for quiz in quizes %}
+    {%for client in client %}
         <div class="row">            
-                <div>{{quiz.id}}</div>
-                <div>{{quiz.name}}</div>
-                <div>{{quiz.user_id}}</div>
-                <div>{{ quiz.question| list | length}}</div>
+                <!-- <div>{{quiz.id}}</div> -->
+                <div>{{client.last_name}}</div>
+                <div>{{client.first_name}}</div>
+                <div>{{client.age}}</div>
                 <!-- <form action="/edit_quiz/"> -->
                 <form method="GET" action="/edit_quiz/">
-                    <input type="submit" name="quiz_id" value={{quiz.id}} />
+                    <input type="submit" name="quiz_id" value={{client.id}} />
                 </form>              
                 <div><button>Уд</button></div>
         </div>
@@ -64,17 +89,14 @@
         <div>Вариант 2</div>
         <div>Вариант 3</div>
     </div>
-    {%for q in questions %}
+    {%for product in products %}
         <div class="row">            
-                <div>{{q.question}}</div>
-                <div>{{q.answer}}</div>
-                <div>{{q.wrong1}}</div>
-                <div>{{q.wrong2}}</div>
-                <div>{{q.wrong3}}</div>
+            <div>{{product.product}}</div>
+            <div>{{product.kind}}</div>
                 <div><button>Ред</button></div>
                 <div><button>Уд</button></div>
                 <form method="GET" action="/edit_question/">
-                    <input type="submit" name="question_id" value={{q.id}} />
+                    <input type="submit" name="question_id" value={{product.id}} />
                 </form>
         </div>
     {% endfor %}

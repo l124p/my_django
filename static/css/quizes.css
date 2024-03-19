@@ -48,7 +48,7 @@ input{
   }
 
 
-#add_quiz:target , #edit_quiz:target {
+#add_quiz , #edit_quiz:target {
     display:block;
 }
 

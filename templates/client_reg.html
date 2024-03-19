@@ -1,0 +1,50 @@
+<style>
+    
+
+.row div{
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+
+.hrow{
+    font-size: 125%;
+    border-collapse: collapse;
+    }
+
+    .row{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .wrapper div{
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+    button{
+        height: 100%;
+    }
+</style>
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Клиенты</h2>
+
+<div id="add_quiz" class="modal" aria-hidden="true">
+    <div class="modal-body">    
+        <fieldset>
+            <legend  align="center">Зарегистрироваться</legend>
+            <div class="form_conrainer">
+                <form action="/reg/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="text"  name="last_name">
+                        <input type="text"  name="first_name">
+                        <input type="date"  name="age">
+                        <input type="submit" value="Отправить">           
+                </form>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+{% endblock %}
+
