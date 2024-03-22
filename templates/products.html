@@ -2,7 +2,7 @@
 
     .row{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
 
@@ -31,17 +31,25 @@
 {% block content %}
 <h2>Продукты</h2>
 <div class="start_form quizes_form">
+    <div><a href="{% url 'addproduct' %}">Добавить</a></div>
     <div class="row hrow">
-        <div>Вид продукта</div>      
+        <div>ID продукта</div>
         <div>Название продукта</div>      
+        <div>Вид продукта</div>      
+        <div>Фото</div>   
     </div>
     {% for product in products %}
         <div class="row">   
-                <!-- <div>{{product.id}}</div> -->
-                <div>{{product.product}}</div>
-                <div>{{product.kind}}</div>
+                <div><a href="{{ product.get_absolute_url }}">{{forloop.counter}}</a></div>
+                <div>{{product.name}}</div>
+                <div>{{product.kind_product}}</div>
+                <div>
+                {% if product.photo %}
+                <img class="img-client thumb" src="{{product.photo.url}}">
+                {% endif %}   
+                </div>              
         </div>
-    {% endfor %}
+    {% endfor %}   
 </div>
 {% endblock %}
 

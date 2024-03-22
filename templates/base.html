@@ -13,20 +13,19 @@
     
     <header >Header
         <nav><ul class="main-menu">
-            <li><a href="/products/">Продукты</a></li>
-            <li><a href="/clients/">Клиенты</a></li>
+            <li><a href="{% url 'products' %}">Продукты</a></li>
+            <li><a href="{% url 'clients' %}">Клиенты</a></li>
             <li><a href="/client_products/">Выбрать продукт</a></li>
             <li><a href="/login/">логин</a></li>
             <li><a href="/reg/">регистрация</a></li>
+            <!-- {% if request.user.is_a %}
+            {% endif%} -->
             <li><a href="/admin/">Админка</a></li>
+
         </ul></nav> 
     </header>         
     
     <main>
-
-        <section class="info">
-            <h2>Это базовый шаблон</h2>
-        </section>
         <section class="content">   
         
             {% block content %}

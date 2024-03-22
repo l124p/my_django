@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+
+{% block title %} Продукт {% endblock %}
+{% block content_head %}
+    <h2>Продукт</h2>
+{% endblock %}
+{% block content %}
+<h2>Продукт</h2>
+<div class="users">
+    <div class="photo">
+        <img class="st-photo" src="{{product.photo.url}}" alt="Нет фото">
+    </div>
+    <div> {{product.name}}</div>
+    <div> {{product.kind_product}}</div>
+    <div> {% if product.photo %}</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+{% block title %} Пользователи {% endblock %}
+{% block content_head %}
+    <h2>Пользователи</h2>
+{% endblock %}
+{% block content %}
+<h2>Клиенты</h2>
+<div class="users">
+    <!-- <div class="row hrow">
+        <!-- <div>ID клиента</div> 
+        <div>Имя клиента</div>      
+        <div>Фамилия клиента</div>      
+        <div>Возраст клиента</div>      
+    </div> -->
+    {% for client in clients %}
+                <!-- <div>{{client.id}}</div> -->
+                <div>{{forloop.counter}}</div>
+                <div><a href="{{ client.get_absolute_url }}">{{client.last_name}}{{client.first_name}}</a></div>
+                <div>
+                {% if client.photo %}
+                <img class="img-client thumb" src="{{client.photo.url}}">
+                {% endif %}   
+                </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

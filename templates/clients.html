@@ -13,7 +13,7 @@
 
     .row{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
     .wrapper div{
         border: 1px solid;
@@ -29,18 +29,28 @@
 {% block content %}
 <h2>Клиенты</h2>
 <div class="start_form quizes_form">
+    <div><a href="{% url 'addclient' %}">Добавить</a></div>
     <div class="row hrow">
-        <!-- <div>ID клиента</div> -->
+        <div>ID клиента</div>
         <div>Имя клиента</div>      
         <div>Фамилия клиента</div>      
-        <div>Возраст клиента</div>      
+        <div>Возраст клиента</div>   
+        <div>Фото</div>   
     </div>
     {% for client in clients %}
         <div class="row">   
                 <!-- <div>{{client.id}}</div> -->
+
+                <!-- <div>{{client.id}}</div> -->
+                <div><a href="{{ client.get_absolute_url }}">{{forloop.counter}}</a></div>
                 <div>{{client.last_name}}</div>
-                <div>{{client.first_name}}</div>
-                <div>{{client.age}}</div>
+                <div> {{client.first_name}}</div>
+                <div> {{client.age}}</div>
+                <div>
+                {% if client.photo %}
+                <img class="img-client thumb" src="{{client.photo.url}}">
+                {% endif %}   
+                </div>              
         </div>
     {% endfor %}
 </div>

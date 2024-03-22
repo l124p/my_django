@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+
+{% block title %} Пользователи {% endblock %}
+{% block content_head %}
+    <h2>Пользователи</h2>
+{% endblock %}
+{% block content %}
+<h2>Клиенты</h2>
+<div class="users">
+    <div class="photo">
+        <img class="st-photo" src="{{client.photo.url}}" alt="Нет фото">
+    </div>
+    <div class="info">
+    <p>Фамилия: {{client.last_name}}</p>
+    <p>Имя: {{client.first_name}}</p>
+    <p>Возраст: {{client.age}}</p>
+    <p> Продукты:
+        {% for product in client.products.all %}
+            {{ product }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    </div>
+</div>
+{% endblock %}
+
