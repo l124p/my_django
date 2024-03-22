@@ -1,9 +1,19 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
+
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login, logout
+
+from django.http import HttpResponse
+
 from .models import  Product, KindProduct, Client #User,
 from .forms import *
 
@@ -72,12 +82,16 @@ class Products(ListView):
     #     return Product.objects.filter(id=5)
 
 
-class ClientAdd(CreateView):
+# class ClientAdd(CreateView):
+#     form_class = AddClientForm
+#     template_name = 'form_add_client.html'
+#     success_url = reverse_lazy('clients')
+
+class ClientAdd(LoginRequiredMixin, CreateView):
     form_class = AddClientForm
     template_name = 'form_add_client.html'
     success_url = reverse_lazy('clients')
-
-
+    login_url = '/login/'
 
 class Show_product(DetailView):
     model = Product
@@ -115,7 +129,9 @@ def product_add_view(request):
         form = AddProductForm2()
     return render(request, 'form_add_product.html', {'form':form})        
 
+@login_required(login_url='/login/')
 def product_edit_view(request, id):
+    request.user.username
     product = get_object_or_404(Product, id=id)
     print(product)
     if request.method == 'GET':
@@ -137,12 +153,12 @@ def product_edit_view(request, id):
 #         login(self.request, client)
 #         return redirect('index')
     
-# class LoginUser(LoginView):
-#     form_class = AuthenticationForm
-#     template_name = 'form_login.html'
+class LoginUser(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'form_login.html'
 
-#     def get_succes_url(self):
-#         return reverse_lazy('index')
+    def get_succes_url(self):
+        return reverse_lazy('index')
 
 # def logout_user(r):
 #     logout(r)

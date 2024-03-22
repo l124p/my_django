@@ -28,8 +28,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'), 
     #path('reg/', RegistrClient.as_view, name='registration'),
-    #path('login/', LoginClient.as_view, name='login'),
+    path('login/', LoginUser.as_view, name='login'),
     #path('logout/', logout_user, name='logout'),
+
+
+
     path('clients/', views.clients, name='clients', kwargs={'id':0}),
     path('client/<int:id>', views.clients, name='client'),
     # path('client/add', views.clients, name='addclient'),
