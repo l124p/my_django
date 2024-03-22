@@ -18,23 +18,12 @@ from .models import  Product, KindProduct, Client #User,
 from .forms import *
 
 # Create your views here.
-#from django.contrib.auth
-
 
 
 def index(request):
     return render(request, 'base.html', {'data':'Hello'}) 
 
 
-# def clients(request):
-
-#     clients = Client.objects.all()
-#     print(*clients)
-#     for client in clients:
-#         print(client.first_name)
-#         print(client.last_name)
-#         print(client.id)
-#     return render(request, 'clients.html', {'clients': clients})
 
 def clients(request, id):
 
@@ -73,6 +62,10 @@ class Products(ListView):
     template_name = 'products.html'
     context_object_name = 'products' #или #object_list
 
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
     # def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
     #     context = super().get_context_data(**kwargs)
     #     context['menu'] = ['menu1', 'menu2']
@@ -95,7 +88,7 @@ class ClientAdd(LoginRequiredMixin, CreateView):
 
 class Show_product(DetailView):
     model = Product
-    template_name = 'product.htmpl'
+    template_name = 'product.html'
     pk_url_kwarg = 'id'
 
 

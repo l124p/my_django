@@ -72,6 +72,9 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return f'{self.kind_product} {self.name}'
+    
+    def get_absolute_url(self):
+        return reverse('product', kwargs={'id': self.pk})
 
 
 class ClientProduct(models.Model):
