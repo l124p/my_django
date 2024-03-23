@@ -33,23 +33,28 @@ urlpatterns = [
 
 
 
-    path('clients/', views.clients, name='clients', kwargs={'id':0}),
-    path('client/<int:id>', views.clients, name='client'),
+    #path('clients/', views.clients, name='clients', kwargs={'id':0}),
+    #path('client/<int:id>', views.clients, name='client'),
     # path('client/add', views.clients, name='addclient'),
-    path('client/add', ClientAdd.as_view(), name='addclient'),
-    path('client/edit/<int:id>', views.clients, name='editclient'),
+    #path('client/edit/<int:id>', views.clients, name='editclient'),
 
+    path('clients/', Clients.as_view(), name='clients'),
+    path('clietn/<int:id>', ShowClient.as_view(), name='client'),
+    path('client/add', ClientAdd.as_view(), name='addclient'),
+    
     #path('users/', views.users, name='users'),
 
     #path('products/', views.products, name='products'),
     #path('product/<int:id>', views.clients, name='product'),
-    path('product/add', product_add_view, name='addproduct'),
+    #path('product/add', product_add_view, name='addproduct'),
     # path('product/edit/<int:id>', views.clients, name ='editproduct'),
     path('product/edit/<int:id>', product_edit_view, name ='editproduct'),
 
     path('products/', Products.as_view(), name='products'),
-    path('product/<int:id>', Show_product.as_view(), name='product'),
-  
+    path('product/<int:id>', ShowProduct.as_view(), name='product'),
+    path('product/add', ProductAdd.as_view(), name='addproduct'),
+    
+    
     path('client_products/', views.client_products, name='client_products'),
 ]
 
