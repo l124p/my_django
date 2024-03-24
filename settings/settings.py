@@ -121,6 +121,8 @@ STATIC_URL = 'static/'
 # STATIC_ROOT = Path(BASE_DIR, 'static') # ддя деплоя на сервер 
 STATICFILES_DIRS = [Path(BASE_DIR, 'static')]
 
+LOGIN_REDIRECT_URL = 'index'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

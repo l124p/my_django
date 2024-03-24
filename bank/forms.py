@@ -57,6 +57,13 @@ class RegistrClientForm(UserCreationForm):
     fields = '__all__'
 
 
+
+class AddProductClient(forms.ModelForm):
+    class Meta:
+        model = ClientProduct
+        fields = '__all__'
+
+
 #class RegisterUserForm(UserCreationForm):
 #    model = User
 #    fiels = '__all__'

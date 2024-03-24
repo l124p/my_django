@@ -16,18 +16,20 @@
             {% block main_menu %}
             <li><a href="{% url 'products' %}">Продукты</a></li>
             <li><a href="{% url 'clients' %}">Клиенты</a></li>
-            <li><a href="/client_products/">Выбрать продукт</a></li>
+            <li><a href="/client_products/">Добавить продукт клиенту</a></li>
             
-            {% if request.user.is_authentificated %}
+            
+            <li><a href="/admin/">Админка</a></li>
+            
+            {% if request.user.is_authenticated %}
             <li>{{ user.username }}</li>
             <li><a href="/logout/">Выход</a></li>
             {% else %}
             <li><a href="{% url 'reg' %}">Регистрация</a> | <a href="{% url 'login' %}">Логин</a></li>
-            {% endif%}
-             
-            <li><a href="/admin/">Админка</a></li>
+            {% endif%}          
             {% endblock %}
         </ul></nav> 
+        
     </header>         
     
     <main>

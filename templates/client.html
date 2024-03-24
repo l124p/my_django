@@ -16,8 +16,8 @@
     <p>Имя: {{client.first_name}}</p>
     <p>Возраст: {{client.age}}</p>
     <p> Продукты:
-        {% for product in client.products.all %}
-            {{ product }}{% if not forloop.last %}, {% endif %}
+        {% for product in products %}
+            <p>{{ product }}{% if not forloop.last %}, {% endif %}</p>
         {% endfor %}
     </p>
 

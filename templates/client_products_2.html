@@ -31,46 +31,35 @@
     <select name="client">
          {% for client in clients %}
              <option
-              value="{{ client.id }}"
+              value="{{ client }}"
               {% if selected_client == client %}
                   selected="selected"
               {% endif %}
-             >{{ client.last_name }} {{ client.first_name }}</option>
+             >{{ client }}</option>
          {% endfor %}
     </select>
-    <input type="submit" value="Select">
+        <input type="submit" value="Select">
 </form>
 {% endif %}
 {% if selected_client %}
-  <p>
-    Выбранный клиент: {{ selected_client }} !
-  </p>
+  <fieldset>
+    <legend>Клиент: {{ selected_client.last_name }} {{ selected_client.first_name }}</legend>
+  <p> Продукты клиента:
+    {% for product in client.products.all %}
+        {{ product }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    </p>
+</fieldset>
   <p>
     Доступные продукты:
   </p>
-  <p> Виды продуктов:
-    <select name="kind">
-      {% for kind in kind_products %}
-          <option
-           value="{{ kind.name }}"
-           {% if selected_kind == kind %}
-               selected="selected"
-           {% endif %}
-          >{{ kind.name }}</option>
-      {% endfor %}
- </select>
-     <input type="submit" value="Select">
-    </p>
-
   <form method="post">
     {% csrf_token %}
-    <input type="hidden" name="client_id" value="{{ selected_client }}"> 
-    <p>Вид = {{ kind.value }}</p>
     <select name="product">
          {% for product in products %}
              <option
               value="{{ product }}"
-              {% if selected_product == product %}
+              {% if selected_client == product %}
                   selected="selected"
               {% endif %}
              >{{ product }}</option>
@@ -78,21 +67,6 @@
     </select>
         <input type="submit" value="Select">
 </form>
-  <ul>
-     {% for product in products %}
-       <li>{{ product }}</li>
-     {% endfor %}
-  </ul>
-
-  <fieldset>
-    <legend>Продкты клиента</legend>
-  <p> Продукты клиента:
-    {% for product in client.products.all %}
-        {{ product }}{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-    </p>
-</fieldset>
-
 
 
 {% endif %}

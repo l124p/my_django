@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator, \
                                    validate_email, validate_slug
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 # Create your models here.
 class Person(models.Model):
     last_name = models.CharField(max_length=30,
@@ -35,10 +35,10 @@ class Person(models.Model):
 
 class Client(Person):
 #class Client(AbstractUser):
-
     address = models.CharField(max_length=255,blank=True)
     phone  = models.CharField(max_length=15,blank=True)
-
+    email = models.CharField(max_length=50,blank=True)
+    #user_ptr = models.AutoField()
     def get_absolute_url(self):
         return reverse('client', kwargs={'id': self.pk})
     
@@ -100,7 +100,8 @@ class ClientProduct(models.Model):
     date = models.DateField(null=True,blank=True)   # дата открытия
 
     def __str__(self) -> str:
-        return f'У {self.client.first_name} {self.client.last_name} открыт {self.product} - {self.date}'
+        #return f'У {self.client.first_name} {self.client.last_name} открыт {self.product} - {self.date}'
+        return f'{self.product}: открыт - {self.date}'
     class Meta:
         verbose_name = "Продукт клиента"
         verbose_name_plural = "Продукты клиентов"
