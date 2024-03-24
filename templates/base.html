@@ -22,8 +22,7 @@
             <li>{{ user.username }}</li>
             <li><a href="/logout/">Выход</a></li>
             {% else %}
-            <li><a href="/login/">логин</a></li>
-            <li><a href="/reg/">регистрация</a></li>
+            <li><a href="{% url 'reg' %}">Регистрация</a> | <a href="{% url 'login' %}">Логин</a></li>
             {% endif%}
              
             <li><a href="/admin/">Админка</a></li>

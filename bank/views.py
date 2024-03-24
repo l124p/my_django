@@ -3,13 +3,13 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
-
+from django.core.exceptions import ValidationError
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView 
 from django.contrib.auth import login, logout
 
 from django.http import HttpResponse
@@ -24,21 +24,6 @@ def index(request):
     return render(request, 'base.html', {'data':'Hello'}) 
 
 
-
-# def clients(request, id):
-
-#     if id:
-#         client = Client.objects.get(id=id)
-#         print('Наш один клиент:',client)
-#         return render(request, 'client.html', {'client':client})
-    
-#     clients = Client.objects.all()
-#     print(*clients)
-#     for client in clients:
-#         print(client.first_name)
-#         print(client.last_name)
-#         print(client.id)
-#     return render(request, 'clients.html', {'clients': clients})
 class Clients(ListView):
     model = Client
     template_name = 'clients.html'
@@ -80,42 +65,10 @@ class Products(ListView):
     #     return Product.objects.filter(id=5)
 
 
-
 class ShowProduct(DetailView):
     model = Product
     template_name = 'product.html'
     pk_url_kwarg = 'id'
-
-
-def client_products(request):
-
-    client = Client.objects.all()
-    products = Product.objects.all()
-    print(*client)
-    print(*products)
-    return render(request, 'client_products.html', {'products': products, 'client': client})
-
-
-def product_add_view(request):
-    if request.method == 'POST':
-        form = AddProductForm2(request.POST)
-        if form.is_valid():
-            
-            # если с моделью
-            form.save()
-            return redirect('products')
-    
-            #если без модели
-            # print(form.cleaned_date)
-            # try:
-            #     Product.objects.create(**form.cleaned_data)
-            #     return redirect('products')
-            # except Exception as e:
-            #     print('Ошибка', e)
-            #     form.add_error(None, "Ошибка....")
-    else:
-        form = AddProductForm2()
-    return render(request, 'form_add_product.html', {'form':form})        
 
 
 class ProductAdd(LoginRequiredMixin, CreateView):
@@ -123,6 +76,18 @@ class ProductAdd(LoginRequiredMixin, CreateView):
     template_name = 'form_add_product.html'
     success_url = reverse_lazy('products')
     login_url = '/login/'
+
+
+@login_required(login_url='/login/')
+def client_products(request, id):
+    request.user.username
+    client = get_object_or_404(Client, id=id)
+    print(client)
+    #client = Client.objects.all()
+    products = Product.objects.all()
+    print(*client)
+    print(*products)
+    return render(request, 'client_products.html', {'products': products, 'client': client})
 
 
 
@@ -153,6 +118,35 @@ def registration(request):
 
 
 
+class RegisterClient(CreateView):
+    form_class = RegistrClientForm
+    template_name = 'form_reg_client.html'
+    #success_url = reverse_lazy('login')
+ 
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     c_def = self.get_user_context(title="Регистрация")
+    #     return dict(list(context.items()) + list(c_def.items()))
+    def from_valid(self, form):
+        client = form.save()
+        login(self.request, client)
+        return redirect('index')
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'form_reg_client.html'
+    #success_url = reverse_lazy('login')
+ 
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     c_def = self.get_user_context(title="Регистрация")
+    #     return dict(list(context.items()) + list(c_def.items()))
+    def from_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('index')
+
+
 # class RegisterClient(CreateView):
 #     form_class = ClientCreationForm
 #     template_name = 'client_reg.html'
@@ -163,6 +157,7 @@ def registration(request):
 #         login(self.request, client)
 #         return redirect('index')
     
+
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = 'form_login.html'
@@ -173,3 +168,5 @@ class LoginUser(LoginView):
 # def logout_user(r):
 #     logout(r)
 #     return redirect('login')
+
+

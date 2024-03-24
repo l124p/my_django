@@ -3,18 +3,23 @@ from django.db import models
 from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator, \
                                    validate_email, validate_slug
+
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class Person(models.Model):
     last_name = models.CharField(max_length=30,
                                  #null=False,
                                  # blank=False 
+                                 verbose_name = 'Имя'
                                   )
     first_name = models.CharField(max_length=30,
                                  # null=False,
                                   #blank=False
+                                  verbose_name = 'Фамилия'
                                   )
     age = models.PositiveSmallIntegerField(
         default=None,
+        verbose_name = 'Возраст',
         validators=[MinValueValidator(18), MaxValueValidator(120)]
     )
     
@@ -29,7 +34,11 @@ class Person(models.Model):
         abstract = True
 
 class Client(Person):
-    
+#class Client(AbstractUser):
+
+    address = models.CharField(max_length=255,blank=True)
+    phone  = models.CharField(max_length=15,blank=True)
+
     def get_absolute_url(self):
         return reverse('client', kwargs={'id': self.pk})
     
@@ -38,6 +47,13 @@ class Client(Person):
         verbose_name = "Клиент"
         verbose_name_plural = "Клиенты"
         db_table = 'clients'
+
+
+# class Employer(AbstractUser):
+#     department = models.CharField(max_length=255)
+#     phone  = models.CharField(max_length=15)
+
+
 
 class KindProduct(models.Model):
 

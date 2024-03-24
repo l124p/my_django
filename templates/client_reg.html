@@ -34,12 +34,17 @@
         <fieldset>
             <legend  align="center">Зарегистрироваться</legend>
             <div class="form_conrainer">
-                <form action="/reg/" method="post" enctype="multipart/form-data">
+                <!-- <form action="/reg/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="text"  name="last_name">
                         <input type="text"  name="first_name">
                         <input type="date"  name="age">
                         <input type="submit" value="Отправить">           
+                </form> -->
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Регистрация</button>
                 </form>
             </div>
         </fieldset>
