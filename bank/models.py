@@ -38,7 +38,11 @@ class Client(Person):
     address = models.CharField(max_length=255,blank=True)
     phone  = models.CharField(max_length=15,blank=True)
     email = models.CharField(max_length=50,blank=True)
-    #user_ptr = models.AutoField()
+    
+    photo = models.ImageField(upload_to='media/client_photos', 
+                              blank=True,
+                              verbose_name='Фото')
+
     def get_absolute_url(self):
         return reverse('client', kwargs={'id': self.pk})
     
@@ -97,7 +101,8 @@ class ClientProduct(models.Model):
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    date = models.DateField(null=True,blank=True)   # дата открытия
+    #date = models.DateField(null=True,blank=True)   # дата открытия
+    date = models.DateField(auto_now_add=True, null=True, verbose_name='Дата открытия')
 
     def __str__(self) -> str:
         #return f'У {self.client.first_name} {self.client.last_name} открыт {self.product} - {self.date}'

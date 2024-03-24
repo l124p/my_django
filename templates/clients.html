@@ -1,58 +1,30 @@
-<style>
-    
-
-.row div{
-    border: 1px solid black;
-    border-collapse: collapse;
-    }
-
-.hrow{
-    font-size: 125%;
-    border-collapse: collapse;
-    }
-
-    .row{
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-    }
-    .wrapper div{
-        border: 1px solid;
-        border-collapse: collapse;
-    }
-    button{
-        height: 100%;
-    }
-</style>
-
 {% extends "base.html" %}
 
 {% block content %}
 <h2>Клиенты</h2>
-<div class="start_form quizes_form">
-    <div><a href="{% url 'addclient' %}">Добавить</a></div>
-    <div class="row hrow">
-        <div>ID клиента</div>
-        <div>Имя клиента</div>      
-        <div>Фамилия клиента</div>      
-        <div>Возраст клиента</div>   
-        <div>Фото</div>   
+<div class="clients">
+    <p class="add"><a href="{% url 'addclient' %}">Добавить</a></p>
+    <div class="info">
+        <div class="clients-cell">ID клиента</div>
+        <div class="clients-cell">Имя клиента</div>      
+        <div class="clients-cell">Фамилия клиента</div>      
+        <div class="clients-cell">Возраст клиента</div>   
+        <div class="clients-cell">Фото</div>   
     </div>
     {% for client in clients %}
-        <div class="row">   
-                <!-- <div>{{client.id}}</div> -->
-
-                <!-- <div>{{client.id}}</div> -->
-                <div><a href="{{ client.get_absolute_url }}">{{forloop.counter}}</a></div>
-                <div>{{client.last_name}}</div>
-                <div> {{client.first_name}}</div>
-                <div> {{client.age}}</div>
-                <div>
-                {% if client.photo %}
-                <img class="img-client thumb" src="{{client.photo.url}}">
-                {% endif %}   
-                </div>              
-        </div>
+    <div class="info">   
+            <div class="clients-cell"><a href="{{ client.get_absolute_url }}">{{forloop.counter}}</a></div>
+            <div class="clients-cell">{{client.last_name}}</div>
+            <div class="clients-cell"> {{client.first_name}}</div>
+            <div class="clients-cell"> {{client.age}}</div>
+            <div class="clients-cell">
+            {% if client.photo %}
+            <img class="img-client thumb" src="{{client.photo.url}}">
+            {% endif %}   
+            </div>              
+    </div>
     {% endfor %}
+
 </div>
 {% endblock %}
 

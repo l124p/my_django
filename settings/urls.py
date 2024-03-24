@@ -41,7 +41,8 @@ urlpatterns = [
     #path('client/edit/<int:id>', views.clients, name='editclient'),
 
     path('clients/', Clients.as_view(), name='clients'),
-    path('client/<int:id>', ShowClient.as_view(), name='client'),
+    path('client/<int:id>', views.clients, name='client'),
+    #path('client/<int:id>', ShowClient.as_view(), name='client'),
     path('client/add', ClientAdd.as_view(), name='addclient'),
     
     #path('users/', views.users, name='users'),
@@ -58,7 +59,7 @@ urlpatterns = [
     
     #path('client_product/add', client_products.as_view(), name='addpclientroduct'),
 
-    path('client_products/', views.client_products_1, name='client_products'),
+    path('client_products/', views.client_products, name='client_products'),
 ]
 
 if settings.DEBUG:

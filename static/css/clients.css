@@ -1,0 +1,55 @@
+.clients{
+    width: 70%;
+    display: grid;
+    /* grid-template-columns: 100px 1fr 20px 20px 100px;  */
+    /* grid-template-columns: repeat(5, 1fr); */
+    text-align: center;
+
+}
+
+.clients>.info{
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+.clients-cell{
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 3em; 
+    line-height: 3em;
+}
+
+.thumb{
+    width: 2.5em;
+    height: 2.5em;
+    margin-top: 3px;
+}
+
+.st-photo{
+    width: 100%;
+    height: 100%;
+}
+.st-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.st-info>.info, .st-info>.photo{
+    font-size: 20px;
+    background-color: rgb(180, 170, 170);
+    border: 1px gray solid;
+    padding: 20px;
+}
+
+
+.courses{
+width: 90%;
+display: grid;
+grid-template-columns: 30px 120px 120px 120px 1fr;
+text-align: center;
+}
+
