@@ -83,6 +83,9 @@ class Product(models.Model):
     #end_date = models.DateField(null=True,blank=True)
     end_date = models.DateField(verbose_name = 'Срок действия', default='2099-12-31')
     description = models.TextField(blank=True, verbose_name = 'Описание продукта')
+    photo = models.ImageField(upload_to='media/product_photos', 
+                              blank=True,
+                              verbose_name='Фото')
     class Meta:
         unique_together = ('name', 'kind_product')
         ordering = ['kind_product', 'name']

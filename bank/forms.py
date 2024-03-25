@@ -81,7 +81,7 @@ class RegisterUserForm(UserCreationForm):
         self.fields['username'].label = 'Логин'
         #self.fields['password'].label = 'Пароль'
         #self.fields['confirm_password'].label = 'Подтвердите пароль'
-        self.fields['phone'].label = 'Номер телефона'
+        #self.fields['phone'].label = 'Номер телефона'
         self.fields['first_name'].label = 'Ваше имя'
         self.fields['last_name'].label = 'Ваша фамилия'
         self.fields['address'].label = 'Адрес'
@@ -107,5 +107,5 @@ class RegisterUserForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username','phone','first_name',
+        fields = ['username','first_name',
                   'last_name','address','email']
