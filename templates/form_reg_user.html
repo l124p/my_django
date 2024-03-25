@@ -2,12 +2,10 @@
 {% extends "base.html" %}
 
 {% block title %} Добавить клиента {% endblock %}
-{% block content_head %}
-    <h2>Добавить клиента</h2>
-{% endblock %}
+<h2>Регистрация</h2>
 {% block content %}
-    <h2>Добавить клиента</h2>
-    <form class="client_form" method="POST" enctype="multipart/form-data">
+
+    <form class="persons_forms_reg" method="POST" enctype="multipart/form-data">
        {% csrf_token %} 
        {{ form.as_p }}
        <button type="submit">Регистрация</button>

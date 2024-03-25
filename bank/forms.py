@@ -65,16 +65,16 @@ class AddProductClient(forms.ModelForm):
 
 
 #class RegisterUserForm(UserCreationForm):
-#    model = User
+    #model = User
 #    fiels = '__all__'
 
-#class UserRegisetrForm(UserCreationForm):
+
 class RegisterUserForm(UserCreationForm):
     #confirm_password = forms.CharField(widget=forms.PasswordInput)    
     #password = forms.CharField(widget=forms.PasswordInput)
-    phone = forms.CharField(required=False)
-    address = forms.CharField(required=False)
-    email = forms.CharField(required=True)
+    # phone = forms.CharField(required=False)
+    #address = forms.CharField(required=False)
+    # # email = forms.CharField(required=True)
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -84,7 +84,7 @@ class RegisterUserForm(UserCreationForm):
         #self.fields['phone'].label = 'Номер телефона'
         self.fields['first_name'].label = 'Ваше имя'
         self.fields['last_name'].label = 'Ваша фамилия'
-        self.fields['address'].label = 'Адрес'
+    #     self.fields['address'].label = 'Адрес'
         self.fields['email'].labem = '"Электронная почта'
 
     # def clean_email(self):
@@ -107,5 +107,6 @@ class RegisterUserForm(UserCreationForm):
     
     class Meta:
         model = User
+        # fields = '__all__'
         fields = ['username','first_name',
-                  'last_name','address','email']
+                   'last_name', 'email']

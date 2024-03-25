@@ -12,9 +12,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView 
 from django.contrib.auth import login, logout
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import  Product, KindProduct, Client #User,
+from .models import  Product, KindProduct
 from .forms import *
 
 # Create your views here.
@@ -105,13 +105,14 @@ def product_edit_view(request, id):
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
-    template_name = 'form_reg_client.html'
-
-    def from_valid(self, form):
+    template_name = 'form_reg_user.html'
+    # success_url = reverse_lazy('index')
+    def form_valid(self, form):
         user = form.save()
-        login(self.request, user)
-        return redirect('index')
-
+        login(self.request, user)  
+        return HttpResponseRedirect(reverse_lazy('index'))
+        # return redirect('index')
+        #return HttpResponse('Form not valid')
 
 
 class LoginUser(LoginView):

@@ -57,7 +57,9 @@ class Client(Person):
 #     department = models.CharField(max_length=255)
 #     phone  = models.CharField(max_length=15)
 
-
+# class User(User):
+#      department = models.CharField(max_length=255)
+#      phone  = models.CharField(max_length=15)
 
 class KindProduct(models.Model):
 
