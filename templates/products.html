@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
 
     .row{
         display: grid;
@@ -24,26 +24,27 @@
     button{
         height: 100%;
     }
-</style>
+</style> -->
 
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Продукты</h2>
-<div class="start_form quizes_form">
+
+<div class="products">
+    <h2>Продукты</h2>
     <p class="add"><a href="{% url 'addproduct' %}">Добавить</a></p>
-    <div class="row hrow">
-        <div>Название продукта</div>      
-        <div>Вид продукта</div>      
-        <div>Фото</div>   
+    <div class="info">
+        <div class="products-cell">Название продукта</div>      
+        <div class="products-cell">Вид продукта</div>      
+        <div class="products-cell">Фото</div>   
     </div>
     {% for product in products %}
-        <div class="row">   
+        <div class="info">   
                 <!-- <div>{{forloop.counter}}</div> -->
                 <!-- <div><a href="{{ product.get_absolute_url }}">{{forloop.counter}}</a></div> -->
-                <div><a href="{{ product.get_absolute_url }}">{{product.name}}</a></div>
-                <div>{{product.kind_product}}</div>
-                <div>
+                <div class="products-cell"><a href="{{ product.get_absolute_url }}">{{product.name}}</a></div>
+                <div class="products-cell">{{product.kind_product}}</div>
+                <div class="products-cell">
                 {% if product.photo %}
                 <img class="img-client thumb" src="{{product.photo.url}}">
                 {% endif %}   

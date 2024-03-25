@@ -3,11 +3,11 @@
 
 {% block title %} Клиент {% endblock %}
 {% block content_head %}
-    <h2>Клиент</h2>
+    <div class="hh"><p><h2>Клиент</h2></p></div>
 {% endblock %}
 {% block content %}
-<h2>Клиент</h2>
-<div class="st-info">
+<!-- <div class="hh"><h2>Клиент2</h2></div> -->
+<div class="st-info">  
     {% if client.photo %}
     <div class="photo">
         <img class="st-photo" src="{{client.photo.url}}" alt="Нет фото">

@@ -6,15 +6,17 @@
     <h2>Продукт</h2>
 {% endblock %}
 {% block content %}
-<h2>Продукт</h2>
-<div class="users">
+<!-- <h2>Продукт</h2> -->
+<div class="st-info">
     <div class="photo">
         <img class="st-photo" src="{{product.photo.url}}" alt="Нет фото">
     </div>
-    <div> {{product.name}}</div>
-    <div> {{product.kind_product}}</div>
-    <div> {% if product.photo %}</div>
-    {% endif %}
+    <div class="info">
+    <p>Тип продукта:  {{product.kind_product}}</p>
+    <p>Название продукта:  {{product.name}}</p>
+    <!-- <div> {% if product.photo %}</div>
+    {% endif %} -->
+    </div>
 </div>
 {% endblock %}
 
