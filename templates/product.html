@@ -8,9 +8,13 @@
 {% block content %}
 <!-- <h2>Продукт</h2> -->
 <div class="st-info">
+    {% if product.photo %}
     <div class="photo">
         <img class="st-photo" src="{{product.photo.url}}" alt="Нет фото">
     </div>
+    {% else %}
+    <div class="photo">Нет фото</div>
+    {% endif %}   
     <div class="info">
     <p>Тип продукта:  {{product.kind_product}}</p>
     <p>Название продукта:  {{product.name}}</p>

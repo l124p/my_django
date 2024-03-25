@@ -6,7 +6,7 @@
     <h2>Добавить продукт</h2>
 {% endblock %}
 {% block content %}
-    <form class="products_form" action="{% url 'addproduct'%}" method="POST">
+    <form class="products_form" action="{% url 'addproduct'%}" method="POST" enctype="multipart/form-data">
        {% csrf_token %} 
        {{ form.as_p }}
        <input type="submit">
